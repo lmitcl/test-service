@@ -8,14 +8,26 @@ public interface TeammateService {
 
     TeammateDTO createTeammate(TeammateDTO teammateDTO);
 
-    void changeUserName(String rawTeammateId,
-                        String rawUserName);
+    void changeName(String rawTeammateId,
+                    String rawName);
+
+    void changeSurName(String rawTeammateId,
+                       String rawSurName);
+
+    void changePatronymic(String rawTeammateId,
+                          String rawPatronymic);
+
+    void changeLogin(String rawTeammateId,
+                     String rawLogin);
 
     void changePassword(String rawTeammateId,
                         String rawPassword);
 
     void changeEmail(String rawTeammateId,
                      String rawEmail);
+
+    void changePhone(String rawTeammateId,
+                     String rawPhone);
 
     void changeRole(String rawTeammateId,
                     String rawRole);

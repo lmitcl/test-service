@@ -15,8 +15,9 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class TeammateDTO extends RepresentationModel<TeammateDTO> {
 
+    private String      id;
     @NotEmpty
-    private String      userName;
+    private String      login;
     @NotEmpty
     private String      name;
     @NotEmpty
@@ -27,7 +28,8 @@ public class TeammateDTO extends RepresentationModel<TeammateDTO> {
     private String      password;
     @NotEmpty
     private String      email;
-    private String      id;
+
+    private String      phone;
     private LocalDate   createDate;
     private String      role;
 

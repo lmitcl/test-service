@@ -7,6 +7,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.agiletech.teammate.service.Application;
+import ru.agiletech.teammate.service.domain.teammate.Contacts;
+import ru.agiletech.teammate.service.domain.teammate.Credential;
+import ru.agiletech.teammate.service.domain.teammate.FullName;
 import ru.agiletech.teammate.service.domain.teammate.Teammate;
 
 import java.util.UUID;
@@ -20,6 +23,9 @@ import static org.junit.Assert.assertNotNull;
 public class TestTeammate {
 
     private Teammate teammate;
+    private Credential credential;
+    private FullName fullName;
+    private Contacts contacts;
 
     @Test
     public void testCreateTeammate(){
@@ -30,16 +36,14 @@ public class TestTeammate {
     }
 
 
-//    @Test
-//    public void testChangeUserName(){
-//        this.teammate = createTeammate();
-//
-//        Teammate. userRole = Teammate.UserRole.ADMINISTRATOR;
-//
-//        teammate.changeRole(userRole);
-//
-//        assertNotNull(teammate.teammateId());
-//    }
+    @Test
+    public void testChangeLogin(){
+        this.teammate = createTeammate();
+
+        credential.changeLogin("test");
+
+        assertNotNull(teammate.teammateId());
+    }
 
     @Test
     public void testChangeRole(){
@@ -53,18 +57,20 @@ public class TestTeammate {
     }
 
     private Teammate createTeammate(){
-        String userName = "ivan13test";
         String name = "Ivan";
         String surName = "Ivanov";
         String patronymic = "Ivanich";
+        String login = "tester";
         String password = "12345";
         String email = "Ivan@mail.ru";
+        String phone = "89123123123";
 
-        return Teammate.create(userName,
-                name,
+        return Teammate.create(name,
                 surName,
                 patronymic,
+                login,
                 password,
-                email);
+                email,
+                phone);
     }
 }

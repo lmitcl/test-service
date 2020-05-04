@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+import ru.agiletech.teammate.service.domain.teammate.FullName;
 import ru.agiletech.teammate.service.domain.teammate.Teammate;
 import ru.agiletech.teammate.service.domain.teammate.TeammateId;
 import ru.agiletech.teammate.service.domain.teammate.TeammateRepository;
@@ -24,14 +25,15 @@ public class TeammateServiceImpl implements TeammateService {
 
     @Override
     @Transactional
-    public TeammateDTO createTeammate(TeammateDTO teammateDTO) {
+    public TeammateDTO createTeammate(TeammateDTO rawTeammate) {
         log.info("Create teammate");
-        Teammate teammate = Teammate.create(teammateDTO.getUserName(),
-                        teammateDTO.getName(),
-                        teammateDTO.getSurName(),
-                        teammateDTO.getPatronymic(),
-                        teammateDTO.getPassword(),
-                        teammateDTO.getEmail());
+        Teammate teammate = Teammate.create(rawTeammate.getName(),
+                        rawTeammate.getSurName(),
+                        rawTeammate.getPatronymic(),
+                        rawTeammate.getLogin(),
+                        rawTeammate.getPassword(),
+                        rawTeammate.getEmail(),
+                        rawTeammate.getPhone());
 
         String id = teammate.teammateId();
 
@@ -45,20 +47,72 @@ public class TeammateServiceImpl implements TeammateService {
 
     @Override
     @Transactional
-    public void changeUserName(String rawTeammateId, String rawUserName) {
-        log.info("Change userName for teammate with id {}", rawTeammateId);
+    public void changeName(String rawTeammateId, String rawName) {
+        log.info("Change name for teammate with id {}", rawTeammateId);
 
         TeammateId teammateId = TeammateId.identifyTeammateFrom(rawTeammateId);
         Teammate teammate = teammateRepository.teammateOfId(teammateId);
 
-        teammate.changeUserName(rawUserName);
+        teammate.changeName(rawName);
 
-        log.info("UserName has been changed for teammate with id {}", rawTeammateId);
+        log.info("Name has been changed for teammate with id {}", rawTeammateId);
 
         teammateRepository.save(teammate);
 
         log.info("Teammate with id {} has been saved", rawTeammateId);
 
+    }
+
+    @Override
+    @Transactional
+    public void changeSurName(String rawTeammateId, String rawSurName) {
+        log.info("Change surName for teammate with id {}", rawTeammateId);
+
+        TeammateId teammateId = TeammateId.identifyTeammateFrom(rawTeammateId);
+        Teammate teammate = teammateRepository.teammateOfId(teammateId);
+
+        teammate.changeSurName(rawSurName);
+
+        log.info("SurName has been changed for teammate with id {}", rawTeammateId);
+
+        teammateRepository.save(teammate);
+
+        log.info("Teammate with id {} has been saved", rawTeammateId);
+
+    }
+
+    @Override
+    @Transactional
+    public void changePatronymic(String rawTeammateId, String rawPatronymic) {
+        log.info("Change patronymic for teammate with id {}", rawTeammateId);
+
+        TeammateId teammateId = TeammateId.identifyTeammateFrom(rawTeammateId);
+        Teammate teammate = teammateRepository.teammateOfId(teammateId);
+
+        teammate.changePatronymic(rawPatronymic);
+
+        log.info("Patronymic has been changed for teammate with id {}", rawTeammateId);
+
+        teammateRepository.save(teammate);
+
+        log.info("Teammate with id {} has been saved", rawTeammateId);
+    }
+
+    @Override
+    @Transactional
+    public void changeLogin(String rawTeammateId, String rawLogin) {
+        log.info("Change login for teammate with id {}", rawTeammateId);
+
+        TeammateId teammateId = TeammateId.identifyTeammateFrom(rawTeammateId);
+        Teammate teammate = teammateRepository.teammateOfId(teammateId);
+
+        teammate.changeLogin(rawLogin);
+
+        log.info("Login has been changed for teammate with id {}", rawTeammateId);
+
+        teammateRepository.save(teammate);
+
+        log.info("Teammate with id {} has been saved", rawTeammateId);
     }
 
     @Override
@@ -90,6 +144,22 @@ public class TeammateServiceImpl implements TeammateService {
         teammate.changeEmail(rawEmail);
 
         log.info("Email has been changed for teammate with id {}", rawTeammateId);
+
+        teammateRepository.save(teammate);
+
+        log.info("Teammate with id {} has been saved", rawTeammateId);
+    }
+
+    @Override
+    public void changePhone(String rawTeammateId, String rawPhone) {
+        log.info("Change phone for teammate with id {}", rawTeammateId);
+
+        TeammateId teammateId = TeammateId.identifyTeammateFrom(rawTeammateId);
+        Teammate teammate = teammateRepository.teammateOfId(teammateId);
+
+        teammate.changePhone(rawPhone);
+
+        log.info("Phone has been changed for teammate with id {}", rawTeammateId);
 
         teammateRepository.save(teammate);
 

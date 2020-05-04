@@ -9,9 +9,13 @@ public class LinksUtil {
     public static void addLinks(TeammateDTO teammateDTO){
         addSelfLink(teammateDTO);
         addAllTeammatesLink(teammateDTO);
-        addUserNameLink(teammateDTO);
+        addNameLink(teammateDTO);
+        addSurNameLink(teammateDTO);
+        addPatronymicLink(teammateDTO);
+        addLoginLink(teammateDTO);
         addPasswordLink(teammateDTO);
         addEmailLink(teammateDTO);
+        addPhoneLink(teammateDTO);
         addRoleLink(teammateDTO);
     }
 
@@ -27,10 +31,28 @@ public class LinksUtil {
                 .withRel("allTeammates"));
     }
 
-    private static void addUserNameLink(TeammateDTO teammateDTO){
+    private static void addNameLink(TeammateDTO teammateDTO){
         teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
-                .changeUserName(teammateDTO.getId(),null))
-                .withRel("userName"));
+                .changeName(teammateDTO.getId(),null))
+                .withRel("name"));
+    }
+
+    private static void addSurNameLink(TeammateDTO teammateDTO){
+        teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
+                .changeSurName(teammateDTO.getId(),null))
+                .withRel("surName"));
+    }
+
+    private static void addPatronymicLink(TeammateDTO teammateDTO){
+        teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
+                .changePatronymic(teammateDTO.getId(),null))
+                .withRel("patronymic"));
+    }
+
+    private static void addLoginLink(TeammateDTO teammateDTO){
+        teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
+                .changeLogin(teammateDTO.getId(),null))
+                .withRel("login"));
     }
 
     private static void addPasswordLink(TeammateDTO teammateDTO){
@@ -43,6 +65,12 @@ public class LinksUtil {
         teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
                 .changeEmail(teammateDTO.getId(),null))
                 .withRel("email"));
+    }
+
+    private static void addPhoneLink(TeammateDTO teammateDTO){
+        teammateDTO.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeammateResource.class)
+                .changePhone(teammateDTO.getId(),null))
+                .withRel("phone"));
     }
 
     private static void addRoleLink(TeammateDTO teammateDTO){

@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.agiletech.teammate.service.application.TeammateDTO;
 import ru.agiletech.teammate.service.application.TeammateService;
-import ru.agiletech.teammate.service.domain.teammate.Teammate;
 import ru.agiletech.teammate.service.presentation.hateos.LinksUtil;
-
 
 import javax.validation.Valid;
 import java.util.Set;
@@ -50,10 +48,34 @@ public class TeammateResource {
         return teammates;
     }
 
-    @PutMapping(value = "/teammates/{id}/username")
-    public ResponseEntity<Void> changeUserName(@PathVariable(name = "id") String teammateId,
-                                               @RequestParam              String userName){
-        teammateService.changeUserName(teammateId, userName);
+    @PutMapping(value = "/teammates/{id}/name")
+    public ResponseEntity<Void> changeName(@PathVariable(name = "id") String teammateId,
+                                           @RequestParam              String name){
+        teammateService.changeName(teammateId, name);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/teammates/{id}/surName")
+    public ResponseEntity<Void> changeSurName(@PathVariable(name = "id") String teammateId,
+                                              @RequestParam              String surName){
+        teammateService.changeSurName(teammateId, surName);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/teammates/{id}/patronymic")
+    public ResponseEntity<Void> changePatronymic(@PathVariable(name = "id") String teammateId,
+                                                 @RequestParam              String patronymic){
+        teammateService.changePatronymic(teammateId, patronymic);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/teammates/{id}/login")
+    public ResponseEntity<Void> changeLogin(@PathVariable(name = "id") String teammateId,
+                                            @RequestParam              String login){
+        teammateService.changeLogin(teammateId, login);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -69,7 +91,15 @@ public class TeammateResource {
     @PutMapping(value = "/teammates/{id}/email")
     public ResponseEntity<Void> changeEmail(@PathVariable(name = "id") String teammateId,
                                             @RequestParam              String email){
-        teammateService.changeUserName(teammateId, email);
+        teammateService.changeEmail(teammateId, email);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/teammates/{id}/phone")
+    public ResponseEntity<Void> changePhone(@PathVariable(name = "id") String teammateId,
+                                            @RequestParam              String phone){
+        teammateService.changePhone(teammateId, phone);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -77,7 +107,7 @@ public class TeammateResource {
     @PutMapping(value = "/teammates/{id}/role")
     public ResponseEntity<Void> changeRole(@PathVariable(name = "id") String teammateId,
                                            @RequestParam              String role){
-        teammateService.changeUserName(teammateId, role);
+        teammateService.changeRole(teammateId, role);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
