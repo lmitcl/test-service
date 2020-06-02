@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.agiletech</groupId>
-    <artifactId>temmate-service</artifactId>
+    <artifactId>teammate-service</artifactId>
     <version>1.0</version>
 
     <properties>
