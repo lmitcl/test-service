@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
-import ru.agiletech.teammate.service.domain.teammate.Teammate;
-import ru.agiletech.teammate.service.domain.teammate.TeammateId;
-import ru.agiletech.teammate.service.domain.teammate.TeammateRepository;
+import ru.agiletech.teammate.service.domain.Teammate;
+import ru.agiletech.teammate.service.domain.TeammateId;
+import ru.agiletech.teammate.service.domain.TeammateRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,10 +22,11 @@ public class TeammateRepositoryImpl implements TeammateRepository {
     public void save(Teammate teammate) {
         try{
             teammateDAO.save(teammate);
-        } catch (DataAccessException e) {
-            log.error(e.getMessage());
 
-            throw new RepositoryAccessException(e.getMessage(), e);
+        } catch (DataAccessException ex){
+            log.error(ex.getMessage());
+
+            throw new RepositoryAccessException(ex.getMessage(), ex);
         }
     }
 
@@ -34,23 +35,24 @@ public class TeammateRepositoryImpl implements TeammateRepository {
         try{
             return new HashSet<>(teammateDAO.findAll());
 
-        } catch (DataAccessException e){
-            log.error(e.getMessage());
+        } catch (DataAccessException ex){
+            log.error(ex.getMessage());
 
-            throw new RepositoryAccessException(e.getMessage(), e);
+            throw new RepositoryAccessException(ex.getMessage(), ex);
         }
     }
 
     @Override
     public Teammate teammateOfId(TeammateId teammateId) {
-        try {
+        try{
             return teammateDAO.findByTeammateId(teammateId)
                     .orElseThrow(() -> new TeammateNotFoundException(String.format("Teammate with id %s is not found", teammateId.getId())));
 
-        } catch (DataAccessException e) {
-            log.error(e.getMessage());
+        } catch (DataAccessException ex){
+            log.error(ex.getMessage());
 
-            throw new RepositoryAccessException(e.getMessage(), e);
+            throw new RepositoryAccessException(ex.getMessage(), ex);
         }
     }
+
 }

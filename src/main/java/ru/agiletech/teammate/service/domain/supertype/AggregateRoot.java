@@ -3,15 +3,13 @@ package ru.agiletech.teammate.service.domain.supertype;
 import lombok.Getter;
 import org.apache.commons.collections.CollectionUtils;
 
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AggregateRoot extends IdentifiedDomainObject
-        implements Entity{
+        implements Entity {
 
     @Getter
-    @Transient
     private List<DomainEvent> domainEvents;
 
     protected void registerDomainEvent(DomainEvent domainEvent){
@@ -20,4 +18,5 @@ public abstract class AggregateRoot extends IdentifiedDomainObject
 
         this.domainEvents.add(domainEvent);
     }
+
 }

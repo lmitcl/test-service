@@ -1,7 +1,7 @@
 spring.profiles.active: develop
 spring.main.allow-bean-definition-overriding: true
 
-server.port: 8084
+server.port: 8080
 
 spring:
   application:
@@ -11,10 +11,10 @@ spring:
       kafka:
         binder:
           brokers:
-            - localhost:9092
+            - ${BROKER_HOST_PORT}
       bindings:
         input:
-          destination: sprintStartedChannel
+          destination: ${CHANNEL}
           content-type: application/json
   flyway:
     enabled: true
@@ -23,7 +23,7 @@ spring:
   batch:
     initialize-schema: never
   datasource:
-    url: jdbc:postgresql://localhost:5432/teammate-db
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -39,6 +39,13 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
 
 management:
   endpoints:

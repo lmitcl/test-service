@@ -1,8 +1,8 @@
 package ru.agiletech.teammate.service.infrastructure.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.agiletech.teammate.service.domain.teammate.Teammate;
-import ru.agiletech.teammate.service.domain.teammate.TeammateId;
+import ru.agiletech.teammate.service.domain.Teammate;
+import ru.agiletech.teammate.service.domain.TeammateId;
 
 import java.util.Optional;
 

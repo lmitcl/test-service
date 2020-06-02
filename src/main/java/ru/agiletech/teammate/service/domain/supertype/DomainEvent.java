@@ -8,8 +8,9 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class DomainEvent {
+public abstract class DomainEvent {
 
-    private Date occurredOn;
+    private Date    occurredOn;
     private String  name;
+
 }
